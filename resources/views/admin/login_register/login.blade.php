@@ -5,6 +5,7 @@
 
 
 <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+	<p> 密码账号 admin  密码 12345678 </p>
     <form action="{{route('admin.login')}}" method="post">
         {{csrf_field()}}
         <div class="layui-form-item">
