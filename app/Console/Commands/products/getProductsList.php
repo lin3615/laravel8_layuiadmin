@@ -10,9 +10,9 @@ class getProductsList extends Command
     /**
      * The name and signature of the console command.
      *
-     * @var string
+     * @var string  后面两个参数
      */
-    protected $signature = 'command:products_getProductsList';
+    protected $signature = 'command:products_getProductsList  {num} {start}';
 
     /**
      * The console command description.
@@ -38,7 +38,9 @@ class getProductsList extends Command
      */
     public function handle()
     {
-        $products = DB::table('products')->take(10)->get();
+		$num = $this->argument('num');
+		$start = $this->argument('start');
+        $products = DB::table('products')->take($num)->get();
         foreach ($products as $product) {
             echo $product->id . ':' . $product->title . "\n";
         }
