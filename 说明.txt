@@ -3781,8 +3781,9 @@ php artisan make:command products/getProductsList
 
 // 
 class getProductsList extends Command
-{
-	protected $signature = 'command:products_getProductsList';
+{	
+	// 后面两个参数
+	protected $signature = 'command:products_getProductsList {num} {start}';
 
 	protected $description = '获取最新10个产品';
 
@@ -3793,7 +3794,9 @@ class getProductsList extends Command
 		 */
 		public function handle()
 		{
-			$products = DB::table('products')->take(10)->get();
+			$num = $this->argument('num');
+			$start = $this->argument('start');
+			$products = DB::table('products')->take($num)->get();
 				foreach ($products as $product) {
 				echo $product->id . ':' . $product->title . "\n";
 			}
@@ -3802,7 +3805,7 @@ class getProductsList extends Command
 }
 
 执行以下脚本即可
-php ./artisan command:products_getProductsList
+php ./artisan command:products_getProductsList 10 0
 
 82.生在迁移数据表文件
 参考如下
