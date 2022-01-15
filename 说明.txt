@@ -3682,6 +3682,13 @@ Route::group(['prefix' => 'admin','middleware'=>['auth','permission:purchase.man
 //文件上传接口
 Route::post('uploadImg', [App\Http\Controllers\PublicController::class,'uploadImg'])->name('uploadImg');
 
+同于上传到 storage/app/public 目录的文件可以被外部访问，还要执行以下命令
+
+php artisan storage:link
+
+该命令会在项目根目录下的 public 中创建一个软链 storage 
+指向 storage/app/public，这样，后者下面的文件才可以真正通过 Web 路径访问。
+
 76.分别添加产品表products和产品分类表category
 CREATE TABLE `products` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
